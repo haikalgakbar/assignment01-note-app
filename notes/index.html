@@ -12,9 +12,18 @@
     <a class="w-fit" href="/">
       <span class="material-symbols-rounded"> arrow_back </span>
     </a>
-    <span class="material-symbols-rounded">
-      more_vert
-      </span>
+    <section class="flex gap-4">
+      <button id="edit-note">
+        <span class="material-symbols-rounded">
+          edit
+        </span>
+      </button>
+      <button id="delete-note">
+        <span class="material-symbols-rounded">
+          delete
+        </span>
+      </button>
+    </section>
   </header>
   <main class="flex flex-col p-4 gap-2 flex-1">
     <section class="flex flex-col gap-1">
@@ -23,7 +32,7 @@
     </section>
     <section id="notes-content" class="flex flex-1 text-[#D6D6D6]"></section>
   </main>
-  <footer id="last-edited" class="sticky bottom-0 w-full border-t border-[#1F1F1F] p-2 text-center text-[#707070] bg-[#141414]"></footer>
+  <footer id="last-edited" class="sticky bottom-0 w-full  p-2 text-center text-[#707070] bg-[#141414] text-sm"></footer>
   <script type="module" src="./notes.js"></script>
 </body>
 </html>

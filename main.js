@@ -20,21 +20,21 @@ async function render() {
     const notesDesc = document.createElement("p");
     const notesInfo = document.createElement("p");
     const footer = document.createElement("footer");
-    const detail = document.createElement("a");
+    // const detail = document.createElement("a");
 
     section.classList.add(
+      "flex",
+      "flex-col",
       "bg-[#292929]",
       "p-4",
       "rounded-xl",
-      "gap-2",
+      "gap-1",
       "hover:bg-[#3D3D3D]",
       "cursor-pointer"
     );
-    notesTitle.classList.add("font-semibold");
-    notesInfo.classList.add("text-[#616161]");
-    detail.classList.add("text-[#616161]", "underline");
+    notesTitle.classList.add("font-semibold", "text-lg");
+    notesInfo.classList.add("text-[#616161]", "text-sm");
     notesDesc.classList.add("line-clamp-2");
-    detail.href = `/notes/?id=${note._id}`;
 
     section.addEventListener("click", () => {
       window.location.href = `/notes/?id=${note._id}`;
@@ -45,10 +45,9 @@ async function render() {
     notesInfo.textContent = `${new Intl.DateTimeFormat("id-ID").format(
       date
     )} · ${note.content.split(" ").length} words`;
-    detail.textContent = "See detail";
 
-    header.append(notesTitle, notesInfo);
-    footer.append(detail);
+    header.append(notesTitle);
+    footer.append(notesInfo);
     section.append(header, notesDesc, footer);
     notesList.append(section);
 

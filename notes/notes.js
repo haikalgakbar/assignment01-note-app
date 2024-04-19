@@ -6,6 +6,8 @@ const title = document.querySelector("#notes-title");
 const info = document.querySelector("#notes-info");
 const content = document.querySelector("#notes-content");
 const lastEdited = document.querySelector("#last-edited");
+const editNoteBtn = document.querySelector("#edit-note");
+const deleteNoteBtn = document.querySelector("#delete-note");
 
 async function getNotesDetail() {
   const res = await fetch(`${API_URL}/${id}`);
@@ -27,5 +29,9 @@ async function render() {
     notes.updatedAt
   ).toLocaleString()}`;
 }
+
+editNoteBtn.addEventListener("click", () => {
+  window.location.href = `/edit/?id=${id}`;
+});
 
 render();

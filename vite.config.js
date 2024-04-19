@@ -9,6 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         notes: resolve(__dirname, "notes/index.html"),
         create: resolve(__dirname, "create/index.html"),
+        edit: resolve(__dirname, "edit/index.html"),
       },
     },
   },
