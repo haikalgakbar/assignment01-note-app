@@ -22,12 +22,23 @@ async function render() {
     const footer = document.createElement("footer");
     const detail = document.createElement("a");
 
-    section.classList.add("bg-[#292929]", "p-4", "rounded-xl", "gap-2");
+    section.classList.add(
+      "bg-[#292929]",
+      "p-4",
+      "rounded-xl",
+      "gap-2",
+      "hover:bg-[#3D3D3D]",
+      "cursor-pointer"
+    );
     notesTitle.classList.add("font-semibold");
     notesInfo.classList.add("text-[#616161]");
     detail.classList.add("text-[#616161]", "underline");
     notesDesc.classList.add("line-clamp-2");
     detail.href = `/notes/?id=${note._id}`;
+
+    section.addEventListener("click", () => {
+      window.location.href = `/notes/?id=${note._id}`;
+    });
 
     notesTitle.textContent = note.title;
     notesDesc.textContent = note.content;
