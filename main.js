@@ -44,7 +44,7 @@ async function render() {
     notesDesc.textContent = note.content;
     notesInfo.textContent = `${new Intl.DateTimeFormat("id-ID").format(
       date
-    )} · ${note.content.slice().length} words`;
+    )} · ${note.content.split(" ").length} words`;
     detail.textContent = "See detail";
 
     header.append(notesTitle, notesInfo);
