@@ -8,6 +8,11 @@ const content = document.querySelector("#notes-content");
 const lastEdited = document.querySelector("#last-edited");
 const editNoteBtn = document.querySelector("#edit-note");
 const deleteNoteBtn = document.querySelector("#delete-note");
+const dialog = document.querySelector("dialog");
+const confirmBtn = document.querySelector("#confirm-btn");
+const cancelBtn = dialog.querySelector("#cancel-btn");
+
+// console.log(cancelBtn);
 
 async function getNotesDetail() {
   const res = await fetch(`${API_URL}/${id}`);
@@ -28,10 +33,33 @@ async function render() {
   lastEdited.textContent = `last edited: ${new Date(
     notes.updatedAt
   ).toLocaleString()}`;
+
+  console.log("create at: ", new Date(notes.createdAt));
+  console.log("update at: ", new Date(notes.updatedAt));
 }
 
 editNoteBtn.addEventListener("click", () => {
   window.location.href = `/edit/?id=${id}`;
+});
+
+deleteNoteBtn.addEventListener("click", async () => {
+  dialog.showModal();
+});
+
+cancelBtn.addEventListener("click", () => {
+  dialog.close();
+});
+
+confirmBtn.addEventListener("click", () => {
+  fetch(API_URL, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify([id]),
+  });
+
+  location.replace("/");
 });
 
 render();

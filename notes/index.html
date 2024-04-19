@@ -26,6 +26,19 @@
     </section>
   </header>
   <main class="flex flex-col p-4 gap-2 flex-1">
+    <dialog class="bg-[#141414]/80 min-h-dvh min-w-full text-[#FFFFFF]">
+      <section class="flex flex-col gap-2 w-2/3 m-auto bg-[#292929] p-4 rounded-xl">
+        <p>Delete this note?</p>
+        <section class="flex justify-end gap-2">
+          <button id="cancel-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
+            Close
+          </button>
+          <button id="confirm-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
+            Delete
+          </button>
+        </section>
+      </section>
+    </dialog>
     <section class="flex flex-col gap-1">
       <h1 id="notes-title" class="font-bold text-2xl"></h1>
       <span id="notes-info" class="text-[#707070]"></span>
