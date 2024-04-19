@@ -7,7 +7,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        nested: resolve(__dirname, "create/index.html"),
+        notes: resolve(__dirname, "notes/index.html"),
+        create: resolve(__dirname, "create/index.html"),
       },
     },
   },

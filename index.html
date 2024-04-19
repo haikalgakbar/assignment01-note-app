@@ -4,13 +4,52 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Notes 📝</title>
     <link rel="stylesheet" href="./src/index.css">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
   </head>
   <body>
-    <div id="app"></div>
-    <h1 class="text-red-500">Hello tailwind</h1>
-    <a href="/create/">create</a>
-    <!-- <script type="module" src="/main.js"></script> -->
+    <body class="bg-[#141414] text-white max-w-lg m-auto">
+      <header
+        class="sticky top-0 flex flex-col bg-[#292929] p-4 rounded-b-xl gap-2"
+      >
+        <section class="flex justify-between">
+          <span class="material-symbols-rounded">
+            page_info
+            </span>
+          <h1 id="total-notes" class="font-semibold"></h1>
+          <button onclick="location.href='/create/'">
+            <span class="material-symbols-rounded"> edit_square </span>
+          </button>
+        </section>
+        <input
+          type="text"
+          class="bg-[#141414] py-2 px-4 rounded-full"
+          placeholder="Search..."
+        />
+      </header>
+      <main class="flex flex-col p-4 gap-4">
+        <!-- <section class="bg-[#292929] p-4 rounded-xl gap-2">
+          <header>
+            <h2 class="font-semibold">Title</h2>
+            <p class="text-[#616161]">18 Apr · 123 words</p>
+          </header>
+          <p class="text-[#D6D6D6]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque sit
+            neque unde repellendus accusamus, quam tempora quae ab omnis autem,
+            fugit et, alias accusantium minima est. Asperiores magni fugit
+            exercitationem?
+          </p>
+          <footer>
+            <a href="/detail-notes.html" class="text-[#616161] underline"
+              >See detail</a
+            >
+          </footer>
+        </section> -->
+      </main>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
