@@ -1,4 +1,4 @@
-import { API_URL } from "../src/util/const";
+import { API_URL } from "../src/utils";
 
 const notesInfo = document.querySelector("#notes-info");
 const notesContent = document.querySelector("#notes-content");

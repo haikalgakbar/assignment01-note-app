@@ -1,4 +1,4 @@
-import { API_URL } from "../src/util/const";
+import { API_URL, getNotes } from "../src/utils";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -33,15 +33,15 @@ form.addEventListener("submit", async (e) => {
   window.location.href = `/notes/?id=${id}`;
 });
 
-async function getNotes() {
-  const res = await fetch(`${API_URL}/${id}`);
-  const data = await res.json();
+// async function getNotes() {
+//   const res = await fetch(`${API_URL}/${id}`);
+//   const data = await res.json();
 
-  return data;
-}
+//   return data;
+// }
 
 async function render() {
-  const note = await getNotes();
+  const note = await getNotes(API_URL, id);
   const date = new Date(note.createdAt);
   const words = note.content
     .split(" ")

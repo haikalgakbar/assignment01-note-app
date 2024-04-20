@@ -8,6 +8,19 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body class="flex flex-col bg-[#141414] text-white max-w-lg m-auto min-h-dvh">
+  <dialog class="bg-[#141414]/80 min-h-dvh min-w-full text-[#FFFFFF]">
+    <section class="flex flex-col gap-2 w-2/3 m-auto bg-[#292929] p-4 rounded-xl">
+      <p>Delete this note?</p>
+      <section class="flex justify-end gap-2">
+        <button id="cancel-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
+          Close
+        </button>
+        <button id="confirm-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
+          Delete
+        </button>
+      </section>
+    </section>
+  </dialog>
   <header class="sticky top-0 flex justify-between p-4 bg-[#141414]">
     <a class="w-fit" href="/">
       <span class="material-symbols-rounded"> arrow_back </span>
@@ -26,19 +39,6 @@
     </section>
   </header>
   <main class="flex flex-col p-4 gap-2 flex-1">
-    <dialog class="bg-[#141414]/80 min-h-dvh min-w-full text-[#FFFFFF]">
-      <section class="flex flex-col gap-2 w-2/3 m-auto bg-[#292929] p-4 rounded-xl">
-        <p>Delete this note?</p>
-        <section class="flex justify-end gap-2">
-          <button id="cancel-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
-            Close
-          </button>
-          <button id="confirm-btn" class="py-2 px-4 border border-[#666666] rounded-lg">
-            Delete
-          </button>
-        </section>
-      </section>
-    </dialog>
     <section class="flex flex-col gap-1">
       <h1 id="notes-title" class="font-bold text-2xl"></h1>
       <span id="notes-info" class="text-[#707070]"></span>

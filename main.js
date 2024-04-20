@@ -1,16 +1,17 @@
-import { API_URL } from "./src/util/const";
+import { API_URL, getNotes } from "./src/utils";
+
 const notesList = document.querySelector("main");
 const totalNotes = document.querySelector("#total-notes");
 
-async function getNotes() {
-  const res = await fetch(API_URL);
-  const { data } = await res.json();
+// async function getNotes() {
+//   const res = await fetch(API_URL);
+//   const { data } = await res.json();
 
-  return data;
-}
+//   return data;
+// }
 
 async function render() {
-  const notes = await getNotes();
+  const { data: notes } = await getNotes(API_URL);
 
   notes.forEach((note) => {
     const date = new Date(note.createdAt);
@@ -20,7 +21,6 @@ async function render() {
     const notesDesc = document.createElement("p");
     const notesInfo = document.createElement("p");
     const footer = document.createElement("footer");
-    // const detail = document.createElement("a");
 
     section.classList.add(
       "flex",
@@ -56,3 +56,20 @@ async function render() {
 }
 
 render();
+
+function NotesCard(title, content, date, wordCount) {
+  return `
+  <section class="flex flex-col bg-[#292929] p-4 rounded-xl gap-1 hover:bg-[#3D3D3D] cursor-pointer">
+  <header>
+  <h2 class="font-semibold text-lg">${title}</h2>
+  </header>
+  <p class="line-clamp-2">${content}
+  </p>
+  <footer>
+  <p class="text-[#616161] text-sm">${date} · ${wordCount}
+  </p>
+  </footer>
+  </section>`;
+}
+
+// console.log(NotesCard());

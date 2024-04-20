@@ -1,4 +1,5 @@
-import { API_URL } from "../src/util/const";
+import { API_URL, getNotes } from "../src/utils";
+// import { getNotes } from "../src/utils/getNotes";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -14,15 +15,15 @@ const cancelBtn = dialog.querySelector("#cancel-btn");
 
 // console.log(cancelBtn);
 
-async function getNotesDetail() {
-  const res = await fetch(`${API_URL}/${id}`);
-  const data = await res.json();
+// async function getNotesDetail() {
+//   const res = await fetch(`${API_URL}${id}`);
+//   const data = await res.json();
 
-  return data;
-}
+//   return data;
+// }
 
 async function render() {
-  const notes = await getNotesDetail();
+  const notes = await getNotes(API_URL, id);
   const date = new Date(notes.createdAt);
 
   title.textContent = notes.title;
