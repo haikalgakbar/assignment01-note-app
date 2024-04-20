@@ -1,5 +1,4 @@
-import { API_URL, getNotes } from "../src/utils";
-// import { getNotes } from "../src/utils/getNotes";
+import { API_URL, formatDate, getNotes, wordOrWords } from "../src/utils";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -13,30 +12,18 @@ const dialog = document.querySelector("dialog");
 const confirmBtn = document.querySelector("#confirm-btn");
 const cancelBtn = dialog.querySelector("#cancel-btn");
 
-// console.log(cancelBtn);
-
-// async function getNotesDetail() {
-//   const res = await fetch(`${API_URL}${id}`);
-//   const data = await res.json();
-
-//   return data;
-// }
-
 async function render() {
   const notes = await getNotes(API_URL, id);
-  const date = new Date(notes.createdAt);
+  const date = new Date(notes.created_at);
 
   title.textContent = notes.title;
-  info.textContent = `${new Intl.DateTimeFormat("id-ID").format(date)} · ${
+  info.textContent = `${formatDate(date)} · ${wordOrWords(
     notes.content.split(" ").length
-  } words`;
+  )}`;
   content.textContent = notes.content;
   lastEdited.textContent = `last edited: ${new Date(
-    notes.updatedAt
+    notes.updated_at
   ).toLocaleString()}`;
-
-  console.log("create at: ", new Date(notes.createdAt));
-  console.log("update at: ", new Date(notes.updatedAt));
 }
 
 editNoteBtn.addEventListener("click", () => {

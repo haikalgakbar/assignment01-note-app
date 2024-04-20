@@ -1,4 +1,4 @@
-import { API_URL } from "../src/utils";
+import { API_URL, formatDate, wordOrWords } from "../src/utils";
 
 const notesInfo = document.querySelector("#notes-info");
 const notesContent = document.querySelector("#notes-content");
@@ -13,9 +13,7 @@ notesContent.addEventListener("input", (e) => {
     })
     .reduce((prev, curr) => prev + curr, 0);
 
-  notesInfo.textContent = `${new Intl.DateTimeFormat("id-ID").format(date)} · ${
-    words < 2 ? words + " word" : words + " words"
-  }`;
+  notesInfo.textContent = `${formatDate(date)} · ${wordOrWords(words)}`;
 });
 
 form.addEventListener("submit", async (e) => {
@@ -36,10 +34,15 @@ async function createNewNote(title, content) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify([{ title, content }]),
+    body: JSON.stringify([
+      {
+        title,
+        content,
+        created_at: date.getTime(),
+        updated_at: date.getTime(),
+      },
+    ]),
   });
 }
 
-notesInfo.textContent = `${new Intl.DateTimeFormat("id-ID").format(
-  date
-)} · 0 word`;
+notesInfo.textContent = `${formatDate(date)} · 0 word`;
