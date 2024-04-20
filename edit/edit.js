@@ -6,7 +6,7 @@ const noteTitle = document.querySelector("#notes-title");
 const notesInfo = document.querySelector("#notes-info");
 const notesContent = document.querySelector("#notes-content");
 const form = document.querySelector("#notes-form");
-const _notes = await getNotes(API_URL, id);
+let _notes = [];
 
 notesContent.addEventListener("input", (e) => {
   const words = e.target.value
@@ -34,6 +34,9 @@ form.addEventListener("submit", async (e) => {
 });
 
 async function render() {
+  const notes = await getNotes(API_URL, id);
+  _notes = notes;
+
   const date = new Date(_notes.createdAt);
   const words = _notes.content
     .split(" ")

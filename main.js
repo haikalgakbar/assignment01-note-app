@@ -12,7 +12,7 @@ const totalNotes = document.querySelector("#total-notes");
 const search = document.querySelector("#search");
 const sort = document.querySelector("#sort");
 const display = document.querySelector("#display");
-const { data: _notes } = await getNotes(API_URL);
+let _notes = [];
 
 getStorage("notes") ?? setStorage("notes", { sort: "asc", display: "row" });
 
@@ -27,6 +27,9 @@ _display === "row"
   : (display.innerHTML = `<i class="ph ph-squares-four text-2xl"></i>`);
 
 async function render() {
+  const { data: notes } = await getNotes(API_URL);
+  _notes = notes;
+
   const filteredNotes = _notes.sort((a, b) =>
     _sort === "asc" ? a.created_at - b.created_at : b.created_at - a.created_at
   );
@@ -41,15 +44,13 @@ async function render() {
 
 search.addEventListener("input", (e) => {
   const input = e.target.value;
+  notesList.innerHTML = "";
 
   const filteredNotes = _notes.filter((note) => {
     return note.title.toLowerCase().includes(input.toLowerCase());
   });
 
-  console.log(filteredNotes);
-
   filteredNotes.forEach((note) => {
-    notesList.innerHTML = "";
     const date = new Date(note.created_at);
     notesList.append(NotesCard(note._id, note.title, note.content, date));
   });
