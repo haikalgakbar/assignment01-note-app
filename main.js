@@ -56,7 +56,10 @@ search.addEventListener("input", (e) => {
     renderCards(_display, note._id, note.title, note.content, date);
   });
 
-  if (input === "") render();
+  if (input === "") {
+    notesList.innerHTML = "";
+    render();
+  }
 });
 
 sort.addEventListener("click", () => {
