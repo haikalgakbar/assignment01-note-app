@@ -30,7 +30,7 @@ editNoteBtn.addEventListener("click", () => {
   window.location.href = `/edit/?id=${id}`;
 });
 
-deleteNoteBtn.addEventListener("click", async () => {
+deleteNoteBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 

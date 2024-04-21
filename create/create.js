@@ -8,9 +8,7 @@ const date = new Date();
 notesContent.addEventListener("input", (e) => {
   const words = e.target.value
     .split(" ")
-    .map((word) => {
-      return word !== "";
-    })
+    .map((word) => word !== "")
     .reduce((prev, curr) => prev + curr, 0);
 
   notesInfo.textContent = `${formatDate(date)} · ${wordOrWords(words)}`;

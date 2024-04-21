@@ -11,9 +11,7 @@ let _notes = [];
 notesContent.addEventListener("input", (e) => {
   const words = e.target.value
     .split(" ")
-    .map((word) => {
-      return word !== "";
-    })
+    .map((word) => word !== "")
     .reduce((prev, curr) => prev + curr, 0);
 
   notesInfo.textContent = `${formatDate(_notes.created_at)} · ${wordOrWords(
@@ -40,9 +38,7 @@ async function render() {
   const date = new Date(_notes.createdAt);
   const words = _notes.content
     .split(" ")
-    .map((word) => {
-      return word !== "";
-    })
+    .map((word) => word !== "")
     .reduce((prev, curr) => prev + curr, 0);
 
   noteTitle.value = _notes.title;

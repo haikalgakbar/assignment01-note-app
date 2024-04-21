@@ -46,9 +46,9 @@ search.addEventListener("input", (e) => {
   const input = e.target.value;
   notesList.innerHTML = "";
 
-  const filteredNotes = _notes.filter((note) => {
-    return note.title.toLowerCase().includes(input.toLowerCase());
-  });
+  const filteredNotes = _notes.filter((note) =>
+    note.title.toLowerCase().includes(input.toLowerCase())
+  );
 
   filteredNotes.forEach((note) => {
     const date = new Date(note.created_at);
@@ -96,11 +96,11 @@ function renderCards(display, id, title, content, date) {
       "break-before-avoid"
     );
 
-    notesList.classList.add("flex", "flex-col", "p-4", "gap-4");
+    notesList.classList.add("flex", "flex-col", "p-4", "gap-2");
 
     notesList.append(NotesCardRow(id, title, content, date));
   } else {
-    notesList.classList.remove("flex", "flex-col", "p-4", "gap-4");
+    notesList.classList.remove("flex", "flex-col", "p-4", "gap-2");
     notesList.classList.add(
       "flex-1",
       "columns-2",
@@ -132,7 +132,7 @@ function NotesCardRow(id, title, content, date) {
     "hover:bg-[#3D3D3D]",
     "cursor-pointer"
   );
-  notesTitle.classList.add("font-semibold", "text-lg");
+  notesTitle.classList.add("font-semibold", "text-lg", "line-clamp-2");
   notesInfo.classList.add("text-[#616161]", "text-sm");
   notesDesc.classList.add("line-clamp-2");
 
@@ -154,11 +154,6 @@ function NotesCardRow(id, title, content, date) {
 }
 
 function NotesCardGrid(id, title, content, date) {
-  // <section id="notes-list" class="bg-[#292929] flex flex-col gap-2 p-4 rounded-xl break-inside-avoid cursor-pointer hover:bg-[#3D3D3D]">
-  //         <header class="font-semibold text-lg">Title</header>
-  //         <p class="line-clamp-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati repudiandae tenetur temporibus in maxime, libero adipisci iure excepturi ipsa recusandae laboriosam modi placeat unde, suscipit tempore eaque odio doloribus nemo.</p>
-  //         <p class="text-[#616161] text-sm">21/04/2024 · 3 words</p>
-  //       </section>
   const section = document.createElement("section");
   const header = document.createElement("header");
   const notesTitle = document.createElement("h2");
@@ -170,14 +165,14 @@ function NotesCardGrid(id, title, content, date) {
     "bg-[#292929]",
     "flex",
     "flex-col",
-    "gap-2",
+    "gap-1",
     "p-4",
     "rounded-xl",
     "break-inside-avoid",
     "cursor-pointer",
     "hover:bg-[#3D3D3D]"
   );
-  notesTitle.classList.add("font-semibold", "text-lg");
+  notesTitle.classList.add("font-semibold", "text-lg", "line-clamp-5");
   notesDesc.classList.add("line-clamp-4");
   notesInfo.classList.add("text-[#616161]", "text-sm");
 
