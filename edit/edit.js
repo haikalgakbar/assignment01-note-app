@@ -65,6 +65,4 @@ async function updateNote(id, title, content) {
   });
 }
 
-// notesInfo.textContent = `${formatDate(_notes.created_at)} · 0 word`;
-
 render();

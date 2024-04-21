@@ -37,7 +37,7 @@ async function render() {
   filteredNotes.forEach((note) => {
     const date = new Date(note.created_at);
 
-    notesList.append(NotesCard(note._id, note.title, note.content, date));
+    renderCards(_display, note._id, note.title, note.content, date);
   });
   totalNotes.textContent = `${_notes.length} Notes`;
 }
@@ -52,7 +52,8 @@ search.addEventListener("input", (e) => {
 
   filteredNotes.forEach((note) => {
     const date = new Date(note.created_at);
-    notesList.append(NotesCard(note._id, note.title, note.content, date));
+
+    renderCards(_display, note._id, note.title, note.content, date);
   });
 
   if (input === "") render();
@@ -80,7 +81,37 @@ display.addEventListener("click", () => {
 
 render();
 
-function NotesCard(id, title, content, date) {
+function renderCards(display, id, title, content, date) {
+  if (display === "row") {
+    notesList.classList.remove(
+      "flex-1",
+      "columns-2",
+      "gap-2",
+      "space-y-2",
+      "overflow-scroll",
+      "p-4",
+      "break-before-avoid"
+    );
+
+    notesList.classList.add("flex", "flex-col", "p-4", "gap-4");
+
+    notesList.append(NotesCardRow(id, title, content, date));
+  } else {
+    notesList.classList.remove("flex", "flex-col", "p-4", "gap-4");
+    notesList.classList.add(
+      "flex-1",
+      "columns-2",
+      "gap-2",
+      "space-y-2",
+      "overflow-scroll",
+      "p-4",
+      "break-before-avoid"
+    );
+    notesList.append(NotesCardGrid(id, title, content, date));
+  }
+}
+
+function NotesCardRow(id, title, content, date) {
   const section = document.createElement("section");
   const header = document.createElement("header");
   const notesTitle = document.createElement("h2");
@@ -115,6 +146,51 @@ function NotesCard(id, title, content, date) {
   header.append(notesTitle);
   footer.append(notesInfo);
   section.append(header, notesDesc, footer);
+
+  return section;
+}
+
+function NotesCardGrid(id, title, content, date) {
+  // <section id="notes-list" class="bg-[#292929] flex flex-col gap-2 p-4 rounded-xl break-inside-avoid cursor-pointer hover:bg-[#3D3D3D]">
+  //         <header class="font-semibold text-lg">Title</header>
+  //         <p class="line-clamp-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Obcaecati repudiandae tenetur temporibus in maxime, libero adipisci iure excepturi ipsa recusandae laboriosam modi placeat unde, suscipit tempore eaque odio doloribus nemo.</p>
+  //         <p class="text-[#616161] text-sm">21/04/2024 · 3 words</p>
+  //       </section>
+  const section = document.createElement("section");
+  const header = document.createElement("header");
+  const notesTitle = document.createElement("h2");
+  const notesDesc = document.createElement("p");
+  const notesInfo = document.createElement("p");
+  const footer = document.createElement("footer");
+
+  section.classList.add(
+    "bg-[#292929]",
+    "flex",
+    "flex-col",
+    "gap-2",
+    "p-4",
+    "rounded-xl",
+    "break-inside-avoid",
+    "cursor-pointer",
+    "hover:bg-[#3D3D3D]"
+  );
+  notesTitle.classList.add("font-semibold", "text-lg");
+  notesDesc.classList.add("line-clamp-4");
+  notesInfo.classList.add("text-[#616161]", "text-sm");
+
+  notesTitle.textContent = title;
+  notesDesc.textContent = content;
+  notesInfo.textContent = `${formatDate(date)} · ${wordOrWords(
+    content.split(" ").length
+  )}`;
+
+  header.append(notesTitle);
+  footer.append(notesInfo);
+  section.append(header, notesDesc, footer);
+
+  section.addEventListener("click", () => {
+    window.location.href = `/notes/?id=${id}`;
+  });
 
   return section;
 }
