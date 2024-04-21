@@ -1,7 +1,7 @@
 export const API_URL = "https://v1.appbackend.io/v1/rows/udWTIFlqXlNk/";
 
-export async function getNotes(API, Id = -1) {
-  const url = Id === -1 ? API : `${API}${Id}`;
+export async function getNotes(API, id = -1) {
+  const url = id === -1 ? API : `${API}${id}`;
   const res = await fetch(url);
   const data = await res.json();
 
@@ -9,7 +9,7 @@ export async function getNotes(API, Id = -1) {
 }
 
 export function wordOrWords(word) {
-  return word < 2 ? word + " word" : word + " words";
+  return word < 2 ? `${word} word` : `${word} words`;
 }
 
 export function formatDate(date) {
